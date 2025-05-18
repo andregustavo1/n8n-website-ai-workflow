@@ -1,0 +1,857 @@
+{
+  "name": "website-ai",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "55c6ece3-bed7-4db2-88b2-7bd8cce62e8f",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -2580,
+        400
+      ],
+      "id": "d2bebc0f-abff-4783-bb81-e63c59121733",
+      "name": "Webhook",
+      "webhookId": "55c6ece3-bed7-4db2-88b2-7bd8cce62e8f"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8d30271e-d941-4b39-b14f-292a78b23100",
+              "name": "info.tel",
+              "value": "={{ $json.body.data.key.remoteJid }}",
+              "type": "string"
+            },
+            {
+              "id": "c29ec273-4247-46a0-bd4c-ac12a740d1d3",
+              "name": "info.name",
+              "value": "={{ $json.body.data.pushName }}",
+              "type": "string"
+            },
+            {
+              "id": "b17e4b85-0549-44bb-ae54-261a00202671",
+              "name": "info.message",
+              "value": "={{ $json.body.data.message.conversation }}",
+              "type": "string"
+            },
+            {
+              "id": "073fc786-2402-4ed3-b46c-bcf6c6f3bfe5",
+              "name": "info.id",
+              "value": "={{ $json.body.data.key.id }}",
+              "type": "string"
+            },
+            {
+              "id": "62a55d7e-3bb6-4dff-84a6-7a3f57520a16",
+              "name": "info.time",
+              "value": "={{ $json.body.data.messageTimestamp.toDateTime('s').toISO() }}",
+              "type": "string"
+            },
+            {
+              "id": "276f53a9-de5f-4377-a8fe-dd0e2f71813e",
+              "name": "info.type",
+              "value": "={{ $json.body.data.messageType }}",
+              "type": "string"
+            },
+            {
+              "id": "931be664-a2ca-4796-b813-2dea8a929338",
+              "name": "Base64",
+              "value": "={{ $json.body.data.message.base64 }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2360,
+        400
+      ],
+      "id": "2936cbb8-3498-4dc0-ba37-8f5e9ddd58d8",
+      "name": "Get Info"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Get Message').item.json.User_message }}",
+        "options": {
+          "systemMessage": "Adapte esse prompt com as informações que o cliente colocar. Ninguem vai ver sua mensagem depois que você mandar por que esse prompot vai ser o prompt final para o criado de website, então comece seu output direto no prompt:\n\nPrompt:\nOBJETIVO\nCriar um site institucional One Page moderno, sofisticado e minimalista, inspirado no estilo de https://devin.ai/ e outras referências fornecidas pelo cliente. O site deve ser altamente responsivo, com animações sutis, design limpo e focado na experiência do usuário, garantindo que todas as informações sejam apresentadas de forma clara e impactante. Não incluir formulários, datas de criação da empresa ou botões flutuantes de WhatsApp.\n\nPaleta de Cores:\n\nCores principais: Azul tecnológico (#1E3A8A) e cinza corporativo (#64748B)\nCores neutras: Branco (#FFFFFF), preto (#000000) e cinza claro (#F1F5F9)\nCores de destaque: Amarelo (#FACC15) para elementos de CTA\n\n\nTipografia:\n\nFamília de fontes: Poppins para títulos e Inter para corpo de texto\nEstilo: Fontes sem serifa, modernas e técnicas, transmitindo inovação e tecnologia\n\n\n\nREFERÊNCIAS VISUAIS\n\nSites inspiração além do devin.ai: Facial Recognition Apps (https://www.facephi.com/), Biometrics Technology (https://www.aware.com/)\nElementos visuais desejados: Interface de aplicativo, escaneamentos faciais estilizados, elementos de UI/UX, gráficos de dados\n\nESTRUTURA DO SITE\n1. Header\n\nDesign: Header fixo no topo, fundo translúcido com efeito glassmorphism, solidificando ao rolar\nElementos:\nCor do texto do header: Se o fundo for escuro Inicialmente branco (#FFF) → muda para preto/cinza escuro ao rolar. Se o fundo for claro Inicialmente preto/cinza escuro → muda para  branco (#FFF) ao rolar\nLogo da Tecbio Services à esquerda\nMenu de navegação à direita com links para: \"Início\", \"Sobre\", \"Soluções\", \"Tecnologia\", \"Contato\"\nBotão CTA \"Solicitar Demonstração\" destacado\n\n\nAnimações: Fade-in ao carregar, transição suave ao rolar\nResponsividade: Menu hambúrguer em dispositivos móveis com animação de expansão\n\n2. Hero Section \n\nDesign: Layout full-screen com imagem de fundo mostrando interface do aplicativo ou tecnologia de reconhecimento facial\nElementos:\n\nTítulo principal: \"Controle de Jornada com Biometria Facial Avançada\"\nSubtítulo: \"Gerenciamento de Ponto, EPIs e Refeitório para Empresas\"\nBotão CTA principal: \"Conheça Nossas Soluções\"\nElemento visual: Mockup do aplicativo em dispositivos móveis e desktop\n\n\nAnimações: Textos e elementos entram com fade-in sequencial e movimento suave\nElementos específicos do setor: Representação visual de escaneamento facial, interfaces de aplicativo, dashboards de dados\n\n3. Sobre Nós\n\nDesign: Layout com duas colunas assimétricas e espaçamento generoso\nElementos:\n\nTítulo: \"Sobre a Tecbio Services\"\nTexto descritivo: \"A Tecbio Services é especialista no desenvolvimento de soluções tecnológicas para gestão e controle de jornada corporativa. Focamos exclusivamente no atendimento a pessoas jurídicas, oferecendo ferramentas que otimizam processos, aumentam a segurança e reduzem custos operacionais. Nossa tecnologia de reconhecimento facial garante precisão, confiabilidade e praticidade no controle de ponto e acesso.\"\nDiferenciais com ícones:\n\nTecnologia facial avançada\nAplicativo multiplataforma\nSoluções corporativas personalizadas\nSuporte técnico especializado\n\n\nImagem mostrando interface do app ou demonstração da tecnologia\n\n\nAnimações: Fade-in e slide sutil dos elementos ao rolar\nCaracterísticas modernas: Gradientes suaves em elementos de destaque, interfaces de app como decoração\n\n4. Por Que Escolher a Tecbio Services?\n\nDesign: Grid de cards com efeito neumórfico ou glassmorphism\nElementos:\n\nTítulo: \"Por Que Nos Escolher?\"\nSubtítulo: \"Tecnologia de ponta para gestão corporativa eficiente\"\nCards:\n\n\"Reconhecimento Facial Preciso\" - Identificação biométrica sem contato físico\n\"Gestão Completa\" - Controle de ponto, EPIs e refeitório em uma única plataforma\n\"Exclusivo para PJ\" - Soluções desenvolvidas para necessidades corporativas\n\"Personalização Avançada\" - Adaptação às políticas e fluxos da sua empresa\n\n\n\n\nAnimações: Cards com aparecimento sequencial e efeito de elevação ao hover\nInteratividade: Microinterações nos cards ao passar o mouse\n\n5. Nossas Soluções\n\nDesign: Layout em grid ou colunas com elementos visuais técnicos\nElementos:\n\nTítulo: \"Soluções Tecnológicas\"\nServiços com ícones e descrições concisas:\n\n\"App de Controle de Ponto\" - Registro de jornada com reconhecimento facial, geolocalização e validação em tempo real\n\"Gestão de EPIs\" - Controle de distribuição, uso e validade de equipamentos de proteção individual\n\"Controle de Refeitório\" - Gestão de acesso, consumo e faturamento em refeitórios corporativos\n\"Dashboard Gerencial\" - Relatórios e análises de dados para tomada de decisão\n\"Integração com Sistemas\" - Compatibilidade com sistemas de RH, ERP e folha de pagamento\n\"Alertas e Notificações\" - Sistema de avisos para gestores sobre irregularidades ou pendências\n\n\n\n\nAnimações: Efeito de aparecimento sequencial ao rolar\nRecursos visuais: Uso de interfaces de app, gráficos de dados ou elementos de UI/UX\n\n6. Tecnologia Aplicada\n\nDesign: Slider minimalista ou grid de cards\nElementos:\n\nTítulo: \"Nossa Tecnologia\"\nCards de tecnologias com:\n\nImagem ilustrativa da tecnologia\nNome da tecnologia\nBenefícios principais\nBreve descrição da implementação\n\n\nBotão \"Conhecer Detalhes Técnicos\"\n\n\nAnimações: Transições suaves entre tecnologias, efeito de profundidade\nInteratividade: Navegação intuitiva e minimalista\n\n7. Como Funciona\n\nDesign: Timeline horizontal ou vertical com ícones\nElementos:\n\nTítulo: \"Como Funciona\"\nEtapas do processo:\n\n\"Análise de Necessidades\" - Avaliação dos requisitos da empresa\n\"Personalização\" - Adaptação das soluções ao fluxo de trabalho\n\"Implementação\" - Instalação e configuração dos sistemas\n\"Treinamento\" - Capacitação da equipe para uso das ferramentas\n\"Suporte Contínuo\" - Assistência técnica e atualizações\n\n\n\n\nAnimações: Destaque sequencial de cada etapa ao rolar\nVisual: Elementos gráficos que conectam as etapas, representando fluxo de trabalho\n\n8. Seção de Contato\n\nDesign: Layout clean com elementos visuais que direcionam o olhar\nElementos:\n\nTítulo: \"Entre em Contato\"\nSubtítulo: \"Transforme a gestão de jornada da sua empresa\"\nInformações de contato com ícones modernos:\n\nWhatsApp: (83) 92140-9278 (com link direto)\nE-mail: contato@tecbioservices.com.br (com link mailto)\nInstagram: tecbio_services (com link para perfil)\nLocalização: São Paulo/SP\n\n\nRepresentação visual de atendimento corporativo (opcional)\n\n\nAnimações: Fade-in e leve movimento dos elementos ao rolar\nInteratividade: Efeitos hover em todos os links e botões\n\n9. Last CTA\n\nDesign: Seção de destaque com fundo mostrando interface do aplicativo com tratamento visual\nElementos:\n\nTítulo: \"Pronto para Revolucionar o Controle de Jornada?\"\nSubtítulo: \"Solicite uma demonstração e conheça nossas soluções em ação\"\nBotão CTA principal: \"Agendar Demonstração\"\n\nAnimações: Elementos aparecem com fade-in e zoom suave\nCaracterísticas modernas: Uso de efeitos parallax ou elementos visuais técnicos em segundo plano\n\n10. Footer\n\nDesign: Layout em colunas com fundo em tom azul escuro e elementos visuais técnicos\nElementos:\n\nLogo da Tecbio Services com tratamento visual\nLinks rápidos para seções do site\nInformações essenciais de contato\nÍcones de redes sociais com animações ao hover\nDireitos autorais: \"© 2025 Tecbio Services Ltda. Todos os direitos reservados.\"\n\n\nAnimações: Fade-in ao rolar até o final\n\nELEMENTOS EXTRAS DE EXPERIÊNCIA DO USUÁRIO\n\nIndicador de progresso de rolagem (barra sutil no topo da página)\nScroll snapping suave entre seções para melhor controle\nMenu de navegação contextual que destaca seção atual\nMicrointerações em todos os elementos clicáveis\nTransições de página com efeitos sutis de entrada e saída\nElementos visuais tecnológicos como interfaces de app, reconhecimento facial estilizado e dashboards como elementos decorativos\n\nOBSERVAÇÕES FINAIS\nO site deve transmitir inovação tecnológica, segurança e eficiência, alinhados com os valores da tecnologia de reconhecimento facial e gestão corporativa. A experiência do usuário deve ser fluida e intuitiva, com foco na apresentação clara das soluções e tecnologias da Tecbio Services, destacando a especialização da empresa no mercado de controle de jornada para pessoas jurídicas. Não incluir formulários, datas de criação da empresa ou botões flutuantes de WhatsApp, conforme solicitado.\n\nRequisitos:\nCriar um site institucional One Page moderno\nMicrointerações: Hover em botões (escurecer ou mudar cor).\nAnimações: Todas as sessões tem que ter animações ao carregar e transições suaves ao rolar (fade-in, slide-up).\nO site precisa ser em PT-BR\nTodos os botões CTA tem que levar direto ao WhatsApp\nTenha certeza que os ícones que você vai adicionar existem\n\nRestrições:\nformulários.\ndatas de fundação.\nbotão flutuante de WhatsApp.\nmenu hambúrguer. Colocar CTA no lugar\nadicionar ícones não existentes para evitar erro de build.\n\nicones do lucid react que nao existe, não use eles para nao dar problema de build:\n'\"lucide-react\"' has no exported member 'Child'.\n'\"lucide-react\"' has no exported member 'Tools'\n\n\n",
+          "returnIntermediateSteps": false,
+          "passthroughBinaryImages": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        152,
+        100
+      ],
+      "id": "98555c71-c93b-405d-9572-c07a99103a29",
+      "name": "Prompt Maker"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro-exp-03-25",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        240,
+        320
+      ],
+      "id": "4870e1ac-c23d-4033-91af-138eecedddd8",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wpbD8OXmduMLUc7c",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -356,
+        720
+      ],
+      "id": "d5507266-4e78-48dc-bcac-d2227270de88",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wpbD8OXmduMLUc7c",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.User_message }}",
+        "options": {
+          "systemMessage": "You are the Prompt Checker. Your job is to analyze messages from users and determine whether they are specific prompts to build a website.\n\nIf the message **is specific and describes a website idea or request, or start with \"Eu quero um site..\"**, return only:\n- \"Prompt\"\n\nIf the message **is vague, not a direct request, a question or unrelated to building a website**, return only:\n- \"Not prompt\"\n\nOnly respond with one of these two options. Do not include explanations or extra text.\n",
+          "passthroughBinaryImages": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -1040,
+        275
+      ],
+      "id": "d6bc8856-56e2-4763-aeb4-7def4bbecd1e",
+      "name": "Prompt Checker"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "n8n-webauto",
+        "remoteJid": "={{ $('Get Info').item.json.info.tel }}",
+        "messageText": "={{ $json.output }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -68,
+        500
+      ],
+      "id": "669a7d52-45dc-4f7f-972f-f28fdb72cd10",
+      "name": "Evolution API",
+      "credentials": {
+        "evolutionApi": {
+          "id": "5O3nYK5WzJdvgTDL",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "n8n-webauto",
+        "remoteJid": "={{ $('Get Info').item.json.info.tel }}",
+        "messageText": "={{ $json.output }}\n",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1124,
+        100
+      ],
+      "id": "174c8bdc-b390-4d81-adac-6770bd4883f0",
+      "name": "Evolution API1",
+      "credentials": {
+        "evolutionApi": {
+          "id": "5O3nYK5WzJdvgTDL",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d25fb138-d87e-486c-8c70-2310b3c82a53",
+                    "leftValue": "={{ $json.array.first().parseJson().id }}",
+                    "rightValue": "={{ $('Get Info').item.json.info.id }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Do Nothing"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "54497538-fd51-43dd-b445-9cbe492e45c9",
+                    "leftValue": "={{ $json.array.last().parseJson().time }}",
+                    "rightValue": "={{ $now.minus(10, 'seconds') }}",
+                    "operator": {
+                      "type": "dateTime",
+                      "operation": "before"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Send Message"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "Wait"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1700,
+        300
+      ],
+      "id": "cae6e660-267e-474c-ae69-290dd1890f9b",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "array",
+        "key": "={{ $('Get Info').item.json.info.tel }}",
+        "keyType": "list",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -1920,
+        400
+      ],
+      "id": "f9249272-82e3-49ec-9604-c9c30c521a9a",
+      "name": "Get",
+      "credentials": {
+        "redis": {
+          "id": "BQf33G21xfS8DAe3",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1480,
+        500
+      ],
+      "id": "0034c05d-7fe2-4ff8-8642-8fc77dea9261",
+      "name": "Wait",
+      "webhookId": "61fdf9e2-eae3-4476-ab72-282c7a9d1de4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "44722ed5-a98f-4610-b483-4b208e393503",
+              "name": "User_message",
+              "value": "={{ $json.array.map(value => JSON.parse(value).message).join('. ') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1260,
+        275
+      ],
+      "id": "0f73b924-e9fb-4c80-b7e6-aa5daffb9511",
+      "name": "Get Message"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -1480,
+        75
+      ],
+      "id": "e2efe562-adb0-40fe-b3a2-1f8e8fd5d074",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "n8n-webauto",
+        "remoteJid": "={{ $('Get Info').item.json.info.tel }}",
+        "messageText": "={{ $json.output }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -68,
+        100
+      ],
+      "id": "09baaae8-2747-4502-aced-f375c17b4bd9",
+      "name": "Evolution API2",
+      "credentials": {
+        "evolutionApi": {
+          "id": "5O3nYK5WzJdvgTDL",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -356,
+        220
+      ],
+      "id": "36fff564-46fc-4565-bab5-fdc6cab7136c",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wpbD8OXmduMLUc7c",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        836,
+        320
+      ],
+      "id": "b1d214dd-0f81-4a1c-8195-d2e7ece5f046",
+      "name": "Google Gemini Chat Model3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wpbD8OXmduMLUc7c",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $('Get Info').item.json.info.tel }}"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -1480,
+        275
+      ],
+      "id": "552e36a8-540b-40f7-9dc2-001edcc04847",
+      "name": "Delete Past Messages",
+      "credentials": {
+        "redis": {
+          "id": "BQf33G21xfS8DAe3",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "push",
+        "list": "={{ $('Get Info').item.json.info.tel }}",
+        "messageData": "={{ $json.info.toJsonString() }}",
+        "tail": true
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -2140,
+        400
+      ],
+      "id": "9e076299-6c37-4539-9d91-7f289e4d6eba",
+      "name": "Add to Array",
+      "credentials": {
+        "redis": {
+          "id": "BQf33G21xfS8DAe3",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Get Message').item.json.User_message }}",
+        "options": {
+          "systemMessage": "Your job is just to aswer that the client website enter in progress. Asnwer only in PT-br. Ex: Client: \"Quero um site para...\" You: \"Certo! Seu site de... já está sendo feito\". You can add robot emogis and be more charismatic."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -444,
+        0
+      ],
+      "id": "a7f83cdc-5b68-4037-898f-cd30f514d67a",
+      "name": "Web Site In Progress"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Get Message').item.json.User_message }}",
+        "options": {
+          "systemMessage": "that help teh user that want a website. I have an agency that make websites only with AI, in less than 10 minutes. The user is likely asking questions, seeking support, or simply having a conversation. Say to user that if he wants to create a website, he needs to start with the magic words: \"Eu quero criar um site...\"\n\nYour job is to assist them in a natural, and extroverted tone. You can answer questions, provide suggestions, or guide the user based on their input. Be directly because you in whatsapp that is a shot text app. Do not send more than 250 characters, so you are limited to work with only 250 characteres and answer in pt-br. \n\nDO NOT CODE NOTHING.\n",
+          "maxIterations": 10,
+          "returnIntermediateSteps": false,
+          "passthroughBinaryImages": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -444,
+        500
+      ],
+      "id": "1d295306-3ddd-4b82-8e5e-4819d68cfd8e",
+      "name": "Website Assistent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Get Message').item.json.User_message }}",
+        "options": {
+          "systemMessage": "=Your job is just to say that the client website is ready. Asnwer only in PT-br. Ex: You: \"Seu site de... já está no pronto! Aqui está o link: {{ $json.url_site }}. You can add emogis and be more charismatic."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        748,
+        100
+      ],
+      "id": "fce74ad0-9155-4787-b2e4-e59e859067f4",
+      "name": "Website Ready"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://137.131.132.53:5001/run",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ \"prompt\": $json.output }) }}",
+        "options": {
+          "timeout": 780000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        528,
+        100
+      ],
+      "id": "5a9e503a-9504-459a-a4da-ae0a46c37433",
+      "name": "Lovable",
+      "retryOnFail": false,
+      "executeOnce": false,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "content": "## Bouncer Message\n\n",
+        "height": 700,
+        "width": 860
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2190,
+        -40
+      ],
+      "id": "f30cade5-364f-451a-b604-be41dee3c1b2",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -952,
+        495
+      ],
+      "id": "6a262e2d-b159-41b6-806e-321cceefaabd",
+      "name": "Google Gemini Chat Model5",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wpbD8OXmduMLUc7c",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "561bf179-e33b-4545-9afd-e5fc2723e7e4",
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "Prompt",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -664,
+        275
+      ],
+      "id": "cf50191d-59dd-477f-b7c9-b4d11e806597",
+      "name": "If Prompt"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Get Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Info": {
+      "main": [
+        [
+          {
+            "node": "Add to Array",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Prompt Maker",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Website Assistent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt Checker": {
+      "main": [
+        [
+          {
+            "node": "If Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt Maker": {
+      "main": [
+        [
+          {
+            "node": "Lovable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Delete Past Messages",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Get",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Message": {
+      "main": [
+        [
+          {
+            "node": "Prompt Checker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Web Site In Progress",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Website Ready",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Past Messages": {
+      "main": [
+        [
+          {
+            "node": "Get Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add to Array": {
+      "main": [
+        [
+          {
+            "node": "Get",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Web Site In Progress": {
+      "main": [
+        [
+          {
+            "node": "Evolution API2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Website Assistent": {
+      "main": [
+        [
+          {
+            "node": "Evolution API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Website Ready": {
+      "main": [
+        [
+          {
+            "node": "Evolution API1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lovable": {
+      "main": [
+        [
+          {
+            "node": "Website Ready",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolution API2": {
+      "main": [
+        [
+          {
+            "node": "Prompt Maker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Prompt Checker",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Prompt": {
+      "main": [
+        [
+          {
+            "node": "Web Site In Progress",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Website Assistent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4b207a26-8b3f-45a0-9d22-01e54e60666b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a750912c08c0fb588d20508d858099b211d24a473541eb3e6d646b975ac199ff"
+  },
+  "id": "Vt1v4lVID7QIeRlo",
+  "tags": []
+}
