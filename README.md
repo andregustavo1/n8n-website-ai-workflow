@@ -33,5 +33,6 @@ Traditionally, creating websites from scratch or even via no-code tools requires
 On average, the website creation process takes **6 to 10 minutes** from message to delivery.
 
 ## 📸 Workflow Preview
+![image](https://github.com/user-attachments/assets/b81e2cfd-a623-4b85-a15d-fe084f95651a)
 
 
